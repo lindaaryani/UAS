@@ -11,13 +11,13 @@ Sistem backend untuk pengelolaan SPP sekolah yang mencakup:
 - Laporan pembayaran
 
 ## Teknologi
-- Node.js / Laravel / (sesuai project kamu)
+- PHP
 - Database MySQL
 - Git & GitHub
 
 ## Anggota Kelompok
 1. Ni Kadek Linda Aryani
-2. I Kadek Agus Wisnu Anjing
+2. I Kadek Agus Wisnu Pranajaya Ganteng
 3. Nama Anggota 3
 
 ## Workflow Git
