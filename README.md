@@ -16,8 +16,8 @@ Sistem backend untuk pengelolaan SPP sekolah yang mencakup:
 - Git & GitHub
 
 ## Anggota Kelompok
-1. Ni Kadek Linda Aryani
-2. I Kadek Agus Wisnu Pranajaya Ganteng
+1. Ni Kadek Linda Aryani galak
+2. I Kadek Agus Wisnu Pranajaya 
 3. I Putu Agus Adi Prihandana
 
 ## Workflow Git
