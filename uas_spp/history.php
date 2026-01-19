@@ -1,44 +1,60 @@
-<h1 class="h3 mb-3"> Entri Data Pembayaran</h1>
+<?php
+include "koneksi.php";
+?>
 
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <table class="table">
-                    <tr>
-                        <td width="200">Petugas</td>
-                        <td width="1">:</td>
-                        <td>
-                            <select name="id_petugas" class="form-select">
-                                <?php
-                                    $p = mysqli_query($koneksi, "SELECT*FROM petugas");
-                                    while ($petugas = mysqli_fetch_array($p)){
-                                        ?>
-                                        <option value="<?php echo $petugas['id_petugas']; ?>"><?php echo $petugas['nama_petugas']; ?></option>
-                                        <?php
-                                    }
-                                ?>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="200">Siswa</td>
-                        <td width="1">:</td>
-                        <td>
-                            <select name="nisn" class="form-select">
-                                <?php
-                                    $p = mysqli_query($koneksi, "SELECT*FROM siswa");
-                                    while ($petugas = mysqli_fetch_array($p)){
-                                        ?>
-                                        <option value="<?php echo $petugas['nisn']; ?>"><?php echo $siswa['nama']; ?></option>
-                                        <?php
-                                    }
-                                ?>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">History Pembayaran</h5>
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Petugas</th>
+                    <th>NISN</th>
+                    <th>Nama Siswa</th>
+                    <th>Bulan</th>
+                    <th>Tahun</th>
+                    <th>Tanggal Bayar</th>
+                    <th>Jumlah</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            <?php
+            $no = 1;
+
+            $query = mysqli_query($koneksi, "
+    SELECT 
+        pembayaran.*,
+        siswa.nama AS nama_siswa,
+        petugas.nama_petugas
+    FROM pembayaran
+    LEFT JOIN siswa ON pembayaran.nisn = siswa.nisn
+    LEFT JOIN petugas ON pembayaran.id_petugas = petugas.id_petugas
+    ORDER BY pembayaran.tgl_bayar DESC
+");
+
+
+            while ($data = mysqli_fetch_assoc($query)) {
+            ?>
+                <tr>
+                    <td><?= $no++ ?></td>
+                    <td><?= $data['nama_petugas'] ?></td>
+                    <td><?= $data['nisn'] ?></td>
+                    <td><?= $data['nama_siswa'] ?></td>
+                    <td><?= $data['bulan_dibayar'] ?></td>
+                    <td><?= $data['tahun_dibayar'] ?></td>
+                    <td><?= $data['tgl_bayar'] ?></td>
+                    <td>Rp <?= number_format($data['jumlah_bayar'],0,',','.') ?></td>
+                </tr>
+            <?php } ?>
+
+            </tbody>
+        </table>
+
     </div>
 </div>
