@@ -14,6 +14,7 @@ Sistem backend untuk pengelolaan SPP sekolah yang mencakup:
 - PHP
 - Database MySQL
 - Git & GitHub
+- Template AdminKit
 
 ## Anggota Kelompok
 1. Ni Kadek Linda Aryani 
