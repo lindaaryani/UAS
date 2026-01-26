@@ -1,3 +1,31 @@
+<?php
+include "koneksi.php";
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+
+$api_url = "https://api.quotable.io/random";
+
+$context = stream_context_create([
+  "ssl" => [
+    "verify_peer" => false,
+    "verify_peer_name" => false
+  ]
+]);
+
+$response = @file_get_contents($api_url, false, $context);
+
+if ($response) {
+  $data = json_decode($response, true);
+  $quote = $data['content'] ?? "Belajar hari ini adalah investasi masa depan.";
+  $author = $data['author'] ?? "Unknown";
+} else {
+  $quote = "Belajar hari ini adalah investasi masa depan.";
+  $author = "System";
+}
+?>
+
 <h1 class="h3 mb-3">Dashboard</h1>
 
 <div class="row">
